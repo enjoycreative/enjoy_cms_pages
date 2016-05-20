@@ -1,0 +1,44 @@
+ru:
+  admin:
+    actions:
+      toggle_menu:
+        menu:       Переключатель меню
+        breadcrumb: Переключатель меню
+        title:      Переключатель меню
+        
+  enjoy:
+    pages: 'Страницы и меню'
+    menu_title: Меню
+    menu:
+      enabled: 'добавлено в меню "%{menu}"'
+      disabled: 'удалено из меню "%{menu}"'
+      error: "Ошибка: %{err}"
+      no_id: "Не указан ID"
+
+  mongoid: &mongoid
+    models:
+      enjoy/pages/menu: Меню
+      enjoy/pages/page: Страница
+      enjoy/pages/block: Блок
+      enjoy/pages/blockset: Блоки
+
+    attributes:
+      enjoy/pages/page:
+        fullpath: URL
+        regexp: Подсветка меню
+        redirect: Редирект
+        image: Картинка
+        hidden: Скрытая
+        menus: Меню
+        connectable: Связанный элемент
+        connectable_type: Связанный элемент
+        connectable_id: Связанный элемент
+      enjoy/pages/blockset:
+        blocks: Блоки
+      enjoy/pages/block:
+        pageblock_selector: "CSS селектор блока на странице"
+        partial: "Файл-partial"
+        file_path: "Путь к файлу"
+
+  activerecord:
+    <<: *mongoid
