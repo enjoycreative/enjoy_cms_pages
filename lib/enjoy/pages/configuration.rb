@@ -17,12 +17,16 @@ module Enjoy::Pages
 
     attr_accessor :localize
 
+    attr_accessor :breadcrumbs_on_rails_support
+
     def initialize
       @menu_max_depth = 2
 
       @seo_support = defined? Enjoy::Seo
 
       @localize   = Enjoy.config.localize
+
+      @breadcrumbs_on_rails_support = defined?(BreadcrumbsOnRails)
     end
   end
 end

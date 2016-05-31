@@ -12,6 +12,10 @@ module Enjoy::Pages
           render_404
           return true
         end
+
+        if Enjoy::Pages.config.breadcrumbs_on_rails_support
+          add_breadcrumb @seo_page.name, @seo_page.slug
+        end
       end
 
       def model
