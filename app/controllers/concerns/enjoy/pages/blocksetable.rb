@@ -34,7 +34,9 @@ module Enjoy::Pages::Blocksetable
     begin
       blocks = blockset_get_blocks(type)
       blocks.each do |block|
-        ret << block.render_or_content_html(view)
+        ret << block.render_or_content_html(view) do |html|
+          render_blockset_block block, html
+        end
       end
     rescue Exception => exception
       Rails.logger.error exception.message
@@ -45,6 +47,10 @@ module Enjoy::Pages::Blocksetable
       # ret << blocks || []
     end
     ret.join.html_safe
+  end
+
+  def render_blockset_block(block, html)
+    html
   end
 
   def blockset_get_blocks(type)
