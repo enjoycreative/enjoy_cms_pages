@@ -23,13 +23,22 @@ module Enjoy::Pages
           field :pageblock_selector, :string do
             searchable true
           end
-          
+
           field :file_path, :string do
             searchable true
           end
           field :content, :enjoy_html do
             searchable true
           end
+
+          group :wrapper do
+            active false
+            field :use_wrapper, :toggle
+            field :wrapper_tag, :string
+            field :wrapper_class, :string
+            field :wrapper_id, :string
+          end
+
           # field :content_html, :ck_editor
           # field :content_clear, :toggle
 

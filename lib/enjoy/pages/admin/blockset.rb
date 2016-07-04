@@ -15,8 +15,11 @@ module Enjoy::Pages
             searchable true
           end
 
-          field :blocks do
-            searchable :name
+          group :blocks do
+            active false
+            field :blocks do
+              searchable :name
+            end
           end
 
           Enjoy::RailsAdminGroupPatch::enjoy_cms_group(self, fields)

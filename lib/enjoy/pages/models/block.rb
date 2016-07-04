@@ -32,21 +32,28 @@ module Enjoy::Pages
       end
 
       def render_or_content_html(view, opts = {})
+        ret = ""
         unless self.file_path.blank?
           opts.merge!(partial: self.file_path)
-          view.render(opts) rescue self.content_html.html_safe
+          ret = view.render(opts) rescue self.content_html.html_safe
         else
-          self.content_html.html_safe
+          ret = self.content_html.html_safe
         end
+        ret = content_tag wrapper_tag, ret, class: wrapper_class, id: wrapper_id if use_wrapper
+        ret = yield ret if block_given?
+        return ret
       end
 
       def render_or_content(view, opts = {})
+        ret = ""
         unless self.file_path.blank?
           opts.merge!(partial: self.file_path)
-          view.render(opts) rescue self.content
+          ret = view.render(opts) rescue self.content
         else
-          self.content
+          ret = self.content
         end
+        ret = yield ret if block_given?
+        return ret
       end
 
       def file_fullpath(with_ext = false, ext = ".html.slim")

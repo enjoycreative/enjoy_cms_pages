@@ -16,6 +16,11 @@ module Enjoy::Pages
 
           enjoy_cms_html_field :content, type: String, localize: Enjoy::Pages.config.localize, default: ""
 
+          field :use_wrapper, type: Boolean, default: false
+          field :wrapper_tag, type: String, default: ""
+          field :wrapper_class, type: String, default: ""
+          field :wrapper_id, type: String, default: ""
+
           field :menu_link_content, type: String
           field :show_in_menu, type: Boolean, default: true
           scope :show_in_menu, -> { where(show_in_menu: true) }

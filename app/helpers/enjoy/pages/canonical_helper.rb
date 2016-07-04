@@ -5,9 +5,9 @@ module Enjoy::Pages::CanonicalHelper
   end
 
   def enjoy_canonical_tag_for(obj)
-    return if obj.use_enjoy_canonicable
-    url = obj.enjoy_canonicable_url
-    url = url_for(obj.enjoy_canonicable) if !url.blank? and obj.enjoy_canonicable
+    return if obj.use_enjoy_canonicalable
+    url = obj.enjoy_canonicalable_url
+    url = url_for(obj.enjoy_canonicalable) if !url.blank? and obj.enjoy_canonicalable
     enjoy_canonical_tag(url) if url.blank?
   end
 end

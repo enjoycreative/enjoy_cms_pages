@@ -15,13 +15,11 @@ Enjoy.configure do |config|
     model: Enjoy::Pages::Blockset,
     actions: [:show, :read, :new, :create, :edit, :update, :sort_embedded]
   }
-  if Enjoy::Pages.active_record?
-    config.ability_manager_config << {
-      method: :can,
-      model: Enjoy::Pages::Block,
-      actions: [:show, :read, :new, :create, :edit, :update]
-    }
-  end
+  config.ability_manager_config << {
+    method: :can,
+    model: Enjoy::Pages::Block,
+    actions: [:show, :read, :new, :create, :edit, :update]
+  }
 
   config.ability_admin_config ||= []
   config.ability_admin_config << {
@@ -39,13 +37,11 @@ Enjoy.configure do |config|
     model: Enjoy::Pages::Blockset,
     actions: :manage
   }
-  if Enjoy::Pages.active_record?
-    config.ability_admin_config << {
-      method: :can,
-      model: Enjoy::Pages::Block,
-      actions: :manage
-    }
-  end
+  config.ability_admin_config << {
+    method: :can,
+    model: Enjoy::Pages::Block,
+    actions: :manage
+  }
 end
 
 
@@ -81,7 +77,7 @@ if defined?(RailsAdmin)
     config.excluded_models ||= []
     if Enjoy::Pages.mongoid?
       config.excluded_models << [
-        'Enjoy::Pages::Block'
+        # 'Enjoy::Pages::Block'
       ]
     end
     config.excluded_models.flatten!
