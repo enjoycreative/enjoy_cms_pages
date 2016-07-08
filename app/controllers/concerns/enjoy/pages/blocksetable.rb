@@ -32,7 +32,7 @@ module Enjoy::Pages::Blocksetable
   def render_blockset(view, type)
     ret = []
     begin
-      blocks = blockset_get_blocks(type)
+      blocks = blockset_get_blocks_for_render(type)
       blocks.each do |block|
         ret << block.render_or_content_html(view) do |html|
           render_blockset_block block, html
@@ -53,9 +53,18 @@ module Enjoy::Pages::Blocksetable
     html
   end
 
+  def get_blockset(type)
+    blockset_class.find(type.to_s)
+  end
+
   def blockset_get_blocks(type)
-    blockset = blockset_class.find(type.to_s)
+    blockset = get_blockset type
     blockset.blocks.enabled.show_in_menu.sorted.to_a if blockset
+  end
+
+  def blockset_get_blocks_for_render(type)
+    blockset = get_blockset type
+    blockset.blocks.enabled.sorted.to_a if blockset
   end
 
   def blockset_class_name

@@ -8,6 +8,7 @@ module Enjoy::Pages
             @seo_page = model.enabled.find(params[:id] || params[:slug])
           end
         end
+        after_initialize
         if @seo_page.nil?
           render_404
           return true
@@ -18,8 +19,12 @@ module Enjoy::Pages
         end
       end
 
+      private
       def model
         Enjoy::Pages::Page
+      end
+
+      def after_initialize
       end
     end
   end
