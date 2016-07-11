@@ -75,7 +75,7 @@ module Enjoy::Pages
           highlights_on: false,
           link_html: {
             data: {
-              pageblock_selector: self.pageblock_selector
+              pageblock_selector: self.pageblock_selector,
               history_name: self.name
             }
           }
