@@ -67,7 +67,7 @@ module Enjoy::Pages
       end
 
       def nav_options
-        nav_options_default.merge(nav_options_additions)
+        nav_options_default.deep_merge(nav_options_additions)
       end
 
       def nav_options_default
@@ -76,6 +76,7 @@ module Enjoy::Pages
           link_html: {
             data: {
               pageblock_selector: self.pageblock_selector
+              history_name: self.name
             }
           }
         }
