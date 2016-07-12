@@ -39,7 +39,13 @@ module Enjoy::Pages
         else
           ret = self.content_html.html_safe
         end
-        ret = content_tag wrapper_tag, ret, class: wrapper_class, id: wrapper_id if use_wrapper
+        if use_wrapper
+          _attrs = {
+            class: wrapper_class,
+            id: wrapper_id
+          }.merge(wrapper_attributes)
+          ret = view.content_tag wrapper_tag, ret, _attrs
+        end
         ret = yield ret if block_given?
         return ret
       end
@@ -84,6 +90,21 @@ module Enjoy::Pages
 
       def nav_options_additions
         {}
+      end
+
+      def wrapper_attributes=(val)
+        if val.is_a? (String)
+          begin
+            begin
+              self[:wrapper_attributes] = JSON.parse(val)
+            rescue
+              self[:wrapper_attributes] = YAML.load(val)
+            end
+          rescue
+          end
+        else
+          self[:wrapper_attributes] = val
+        end
       end
     end
   end

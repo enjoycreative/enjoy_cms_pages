@@ -20,6 +20,7 @@ module Enjoy::Pages
           field :wrapper_tag, type: String, default: ""
           field :wrapper_class, type: String, default: ""
           field :wrapper_id, type: String, default: ""
+          field :wrapper_attributes, type: Hash, default: {}
 
           field :menu_link_content, type: String
           field :show_in_menu, type: Boolean, default: true

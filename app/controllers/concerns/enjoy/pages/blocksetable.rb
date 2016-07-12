@@ -32,11 +32,15 @@ module Enjoy::Pages::Blocksetable
   def render_blockset(view, type)
     ret = []
     begin
-      blocks = blockset_get_blocks_for_render(type)
+      blockset = get_blockset(type)
+      blocks = blockset_get_blocks_for_render(blockset)
       blocks.each do |block|
         ret << block.render_or_content_html(view) do |html|
-          render_blockset_block block, html
+          after_render_blockset_block block, html
         end
+      end
+      ret = blockset.render(view, ret.join.html_safe) do |html|
+        after_render_blockset blockset, html
       end
     rescue Exception => exception
       Rails.logger.error exception.message
@@ -46,15 +50,19 @@ module Enjoy::Pages::Blocksetable
       capture_exception(exception) if respond_to?(:capture_exception)
       # ret << blocks || []
     end
-    ret.join.html_safe
+    ret.is_a?(Array) ? ret.join.html_safe : ret
   end
 
-  def render_blockset_block(block, html)
+  def after_render_blockset_block(block, html)
+    html
+  end
+
+  def after_render_blockset(blockset, html)
     html
   end
 
   def get_blockset(type)
-    blockset_class.find(type.to_s)
+    type.is_a?(Enjoy::Pages::Blockset) ? type : blockset_class.find(type.to_s)
   end
 
   def blockset_get_blocks(type)

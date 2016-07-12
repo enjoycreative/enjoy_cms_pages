@@ -15,6 +15,15 @@ module Enjoy::Pages
             searchable true
           end
 
+          group :wrapper do
+            active false
+            field :use_wrapper, :toggle
+            field :wrapper_tag, :string
+            field :wrapper_class, :string
+            field :wrapper_id, :string
+            field :wrapper_attributes, :text
+          end
+
           group :blocks do
             active false
             field :blocks do
