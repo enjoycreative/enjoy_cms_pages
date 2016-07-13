@@ -22,7 +22,7 @@ module Enjoy::Pages::Connectable
         _name_attr = Enjoy::Pages.config.localize ? "name_translations" : "name"
         class_eval <<-EVAL
           after_create do
-            if self.enjoy_connectable_autocreate_page
+            if [true, 1, "1", "true", "t"].include?(self.enjoy_connectable_autocreate_page)
               _p = #{class_name}.new
               _p.#{_name_attr} = self.#{_name_attr}
               _p.connectable = self
