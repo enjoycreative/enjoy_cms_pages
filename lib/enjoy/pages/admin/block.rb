@@ -37,7 +37,11 @@ module Enjoy::Pages
             field :wrapper_tag, :string
             field :wrapper_class, :string
             field :wrapper_id, :string
-            field :wrapper_attributes, :text
+            field :wrapper_attributes, :text do
+              formatted_value do
+                bindings[:object] and bindings[:object].wrapper_attributes ? bindings[:object].wrapper_attributes.to_json : "{}"
+              end
+            end
           end
 
           # field :content_html, :ck_editor

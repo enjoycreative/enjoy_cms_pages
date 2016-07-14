@@ -102,8 +102,10 @@ module Enjoy::Pages
             end
           rescue
           end
-        else
+        elsif val.is_a?(Hash)
           self[:wrapper_attributes] = val
+        else
+          self[:wrapper_attributes] = wrapper_attributes
         end
       end
     end

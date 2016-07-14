@@ -26,20 +26,22 @@ module Enjoy::Pages
         return ret
       end
 
-      def wrapper_attributes=(val)
-        if val.is_a? (String)
-          begin
-            begin
-              self[:wrapper_attributes] = JSON.parse(val)
-            rescue
-              self[:wrapper_attributes] = YAML.load(val)
-            end
-          rescue
-          end
-        else
-          self[:wrapper_attributes] = val
-        end
-      end
+      # def wrapper_attributes=(val)
+      #   if val.is_a? (String)
+      #     begin
+      #       begin
+      #         self[:wrapper_attributes] = JSON.parse(val)
+      #       rescue
+      #         self[:wrapper_attributes] = YAML.load(val)
+      #       end
+      #     rescue
+      #     end
+      #   elsif val.is_a?(Hash)
+      #     self[:wrapper_attributes] = val
+      #   else
+      #     self[:wrapper_attributes] = wrapper_attributes
+      #   end
+      # end
 
 
     end
