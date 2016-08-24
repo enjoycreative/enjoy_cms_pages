@@ -8,7 +8,7 @@ module Enjoy::Pages::Connectable
       routes_namespace = opts.delete(:routes_namespace)
       routes_namespace ||= :main_app
       autocreate_page = opts.delete(:autocreate_page)
-      autocreate_page = true if autocreate_page.nil?
+      autocreate_page = false if autocreate_page.nil?
 
       has_many name, as: :enjoy_connectable, class_name: class_name
       class_eval <<-EVAL

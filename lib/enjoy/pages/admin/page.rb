@@ -4,7 +4,7 @@ module Enjoy::Pages
       def self.config(fields = {})
         Proc.new {
           navigation_label I18n.t('enjoy.pages')
-          
+
           list do
             scopes [:sorted, :enabled, nil]
 
